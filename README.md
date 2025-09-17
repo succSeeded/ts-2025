@@ -1,1 +1,1 @@
-Reposotory for HSE time series 2025 course.
+Repository for HSE time series 2025 course.
