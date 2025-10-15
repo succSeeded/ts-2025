@@ -34,7 +34,7 @@ Assumptions and limitations:
 1. $EE(y_t)=0 space forall t$;
 2. $"Var"(y_t) = "const" = sigma^2 space forall t$;
 3. $"Cov"(epsilon_t, epsilon_s) = 0 space forall t != s$;
-4. $epsilon_t ~ N(0, sigma^2)$
+4. $epsilon_t ~ cal(N)(0, sigma^2)$
 
 Key features:
 
@@ -56,7 +56,7 @@ Given that $Y = (y_1, ..., y_n)$:
 
 $ L(theta | y) approx& product_(t=p+1)^n f(y_t | y_(t-1), ..., y_(t-p), theta). $
 
-Considering that $y_t|y_(t-1), ..., y_(t-p) ~ N(c + sum_(i=1)^p phi_i y_(t-i), sigma^2)$,
+Considering that $y_t|y_(t-1), ..., y_(t-p) ~ cal(N)(c + sum_(i=1)^p phi_i y_(t-i), sigma^2)$,
 
 $ L(theta | y) = product_(i=p+1)^n 1/(sigma sqrt(2 pi)) exp(- 1 / 2 (y_t - c - sum_(i=1)^p phi_i y_(t-i))^2) -> max_theta. $
 
