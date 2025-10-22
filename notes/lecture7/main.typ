@@ -183,3 +183,11 @@ VAE (_variational autoencoder_) architecture:
 
 $ "ELBO" = EE[log p(x | z)] - K dot L(q(z | x)||p(z)) -> max $
 
+= Chaotic time series analysis
+
+$
+cases(dot(x)=sigma(y-x)\,, dot(y)=x(rho-z)-y\,, dot(z)=x y - beta z\.) 
+$
+
+$x(t), y(t), z(t)$ --- time series. If we are able to constuct and solve this kind of equations, we will be able to get their values for any point in time. 
+
