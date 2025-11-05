@@ -60,7 +60,7 @@ EE[y_t] =& EE[beta_1^t y_0 + sum_(i=1)^t beta_1^(t-i) epsilon_i] = beta_1^t y_0 
           =& sum_(i=1)^t beta_1^(2 i - 1) DD[epsilon_(t+1-i)] -> beta_1 / (1 - beta_1^2) dot sigma^2 = "const".
 $
 
-A random stochastic process is called _ergodic_ if its statistical properties can be estimate using a sample from it.
+A random stochastic process is called _ergodic_ if its statistical properties can be estimated using a sample from it.
 
 *Note:* any ergodic process is stationary and almost any stationary process is ergodic. 
 
