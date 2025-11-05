@@ -1,4 +1,4 @@
-= Filtration and smoothing using Fourier analysis: Fourier series, Fourier transform, DFT, FFT, SSFT.
+= Filtration and smoothing using Fourier analysis: Fourier series, Fourier transform, DFT, FFT, SSFT
 == Fourier transform
 
 Fourier series is a decomposition of a function $f in C[a, b]$ with a orthogonal function system ${g_k}_(k=0)^(+infinity)$ in some euclidean space:
@@ -130,15 +130,19 @@ hat(f) = F^(2^m) f = mat(E^(2^(m-1)), D^(2^(m-1)); D^(2^(m-1)), E^(2^(m-1))) mat
 $
 where $E^n$ is $n times n$ identity matrix and
 $
-D^n = mat(1, 0, 0, dots, 0; 0, w_n, 0, dots, 0; 0, 0, w_n^2, dots, 0; dots.v, dots.v, dots.v, dots.down, dots.v; 0, dots, dots, dots, w_n^n).
+D^n = mat(1, 0, 0, dots, 0; 0, w_n, 0, dots, 0; 0, 0, w_n^2, dots, 0; dots.v, dots.v, dots.v, dots.down, dots.v; 0, dots, dots, dots, w_n^(n-1)).
 $
 
 == Short time Fourier transform
+
+*Idea.* Given a predefined window, drag it over the time series applying FFT locally each step. The values inside of the window would be weighted using a kernel function.
 
 STFT (Gabor transform) is given by:
 $
 G(f)(t, w) = hat(f)_g (t, w) = integral_(-infinity)^(+infinity) f(tau) e^(-i w tau) g(tau - t) d tau,
 $
-where $g(t) = exp(-(t - tau)^2 / alpha^2)$ is a Gaussian kernel function, but it is not necessary to use specifically this kernel function.
-
-STFT can easily be discretized by applying FFT in eahc window. The result of STFT is a spectrogram: a plot of frequency against time.
+where $g(t)$ is a kernel function, e.g. Gaussian kernel function:
+$
+g(t) = exp(-(t - tau)^2 / alpha^2).
+$
+STFT can easily be discretized by applying FFT in each window. The result of STFT is a spectrogram: a plot of frequency against time.

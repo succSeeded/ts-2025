@@ -1,12 +1,12 @@
-= Filtration problem. Deterministic methods of filtration: MA, SMA, EMA, polynomial smoothing.
+= Filtration problem. Deterministic methods of filtration: MA, SMA, EMA, polynomial smoothing
 
 == Main methods of reduction to stationary time series
 
-There are tow types of non-stationarity:
+There are two types of non-stationarity:
 
-1. Trend
+- Trend;
 
-2. Nonconsistent dispersion
+- Nonconsistent dispersion.
 
 If there is a trend, we can use the following methods to standardize the time series:
 
@@ -30,7 +30,7 @@ and adjust $k$ for seasonality.
 
 $ "TSD" -> "Seasonal component" -> y_i-"Season" $
 
-=== Dispersion stabilization.
+=== Dispersion stabilization
 
 1. Box-cox transformation. Given $y = {y_1, ..., y_tau}, space y_i > 0$:
 $
@@ -68,7 +68,7 @@ When to apply Box-Cox:
 
 2. Distribution is asymmetric.
 
-== Autocorrelation and partial autocorrelation.
+== Autocorrelation and partial autocorrelation (may be redundant)
 
 *ACF* _(AutoCorrelation Function)_ shows correlation of $y_t$ with lagged component of time series $y_(t-k)$ for different $k$'s. It is given by the following expression:
 $
@@ -165,9 +165,9 @@ How to compute $c_j$:
 2.
 $
 P(-m) =& alpha_0 + alpha_1 dot (-m) + ... + alpha_k dot (-m)^k approx y_(-m),\
-...\
+dots.v&\
 P(0) =& alpha_0,\
-...\
+dots.v&\
 P(m) =& alpha_0 + alpha_1 m + ... alpha_k m^k.
 $
 

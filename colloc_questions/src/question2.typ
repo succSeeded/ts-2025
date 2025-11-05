@@ -1,4 +1,4 @@
-= Weak, strong stationarity. Stationarity tests: DF, ADF, KPSS. Reduction to stationary time series.
+= Weak, strong stationarity. Stationarity tests: DF, ADF, KPSS. Reduction to stationary time series
 
 == Stationarity and Ergoticity
 
