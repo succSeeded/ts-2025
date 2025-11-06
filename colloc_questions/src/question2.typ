@@ -17,9 +17,9 @@ Stationarity is a key feature of time series. There are several kinds of station
 === Non-stationary time series examples
 
 1. Time servies with determinitstic trend:
-
-$ y_t = alpha + beta t + epsilon_t, space epsilon_t ~ cal(N)(0, sigma^2). $
-
+$
+y_t = alpha + beta t + epsilon_t, space epsilon_t ~ cal(N)(0, sigma^2).
+$
 Here, $EE[y_t] = alpha + beta t$ which is not a constant value.
 
 2. $y_t = sin t + epsilon_t, space epsilon_t ~ cal(N)(0,sigma^2)$. Here
@@ -41,7 +41,7 @@ Therefore, $EE[y_t] = y_0\, space DD[y_t] = t sigma^2$.
 
 1. $y_t = epsilon_t, epsilon_t ~_"iid" cal(N)(0, sigma^2)$ -- white noise. In this case,
 
-$ forall t, s: t != s, space EE[y_t] = 0, space DD[y_t] = epsilon^2 < infinity -> "stationary" $
+$ forall t, s: t != s, space EE[y_t] = 0, space DD[y_t] = sigma^2 < infinity -> "stationary" $
 
 2. $y_t = beta_1 y_(t-1) + epsilon_t, space beta in (-1, 1), space epsilon_t ~_"iid" cal(N)(0, sigma^2)$
 $
@@ -103,8 +103,7 @@ $
 3. Evaluate $gamma$ by fitting regression: $Delta y_t & = gamma y_(t-1) + epsilon_t$. Estimate standard t-statistic for $gamma$: 
 $ t_"stat" & = hat(gamma) / ("SE"(hat(gamma))) $
 
-4. Dickey-Fuller distribution: if $H_0$ is correct, $t_"stat"$ does not follow the standard t-distribution, it follows Dickey-Fuller distribution.
-
+4. Dickey-Fuller distribution.
 #table(
   columns: (auto, auto),
   align: (center, center),
@@ -116,7 +115,7 @@ $ t_"stat" & = hat(gamma) / ("SE"(hat(gamma))) $
 
 5. If $t_("stat") < "crit. val." -> H_0 " is rejected,"$
 
-If $t_("stat") > "crit. val." -> H_0 " is not rejected."$
+If $t_("stat") >= "crit. val." -> H_0 " is not rejected."$
 
 === Modification of DF test
 
@@ -136,13 +135,13 @@ How does the choice of $p$ impact the model:
 
 - if $p$ is too small, then the correlation issue will not be solved,
 
-- if $p$ is too big, then the power of test decreases.
+- if $p$ is too big, the power of test decreases.
 
 How to choose $p$:
 
 1. $p approx root(3, T), space p approx sqrt(T)$.
 
-2. Test different $p$, choose $p$ which gives you the "best" regression: BIC, AIC, MQIC.
+2. Test different $p$, choose one that gives you the "best" regression: BIC, AIC, MQIC.
 
 Interpretation of ADF is exactly the same.
 

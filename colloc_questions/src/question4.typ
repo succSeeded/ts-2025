@@ -110,19 +110,16 @@ The algorithm step-by-step:
 Therefore,
 $
 hat(f)_k =& sum_(j=0)^(n / 2 - 1) f_(2 j) exp(-i (2 pi k (2 j)) / n) + sum_(j=0)^(n / 2 - 1) f_(2 j + 1) exp(-i (2 pi k (2 j + 1)) / n) =\
+=& sum_(j=0)^(n / 2 - 1) f_(2 j) exp(-i (2 pi k j) / (n / 2)) + w_n^k sum_(j=0)^(n / 2 - 1) f_(2 j + 1) exp(-i (2 pi k j) / (n / 2)) =\
 =& G(k) + w_n^k H(k), space k = 0,1,dots, n / 2 - 1.
 $
 Taking the periodicity of $w_n$ into account,
 $
 hat(f)_(k + n / 2) = G(k + n / 2) + w_n^(k + n / 2) H(k + n / 2) = G(k) - w_n^k H(k)
 $
-which implies that $H(k + n / 2) = H(k)$ and $G(k + n / 2) = G(k)$. This implies that for $k in {n / 2, dots, n-1}$ $hat(f)_k$ can be calculated using the values from a period before:
-$
-f_(k + n / 2) = G(k + n / 2) + w_n^(k + n / 2) H(k + n / 2) = G(k) - w_n^k H(k), space k = 0, dots, n / 2 - 1.
-$
-3. Recursion. It can be used to calculate $H(k)$ and $G(k)$, moreover, when $n = 2^m$ recursion can be applied untill the end.
+which implies that $H(k + n / 2) = H(k)$ and $G(k + n / 2) = G(k)$.
 
-*FFT complexity.* Total number of recursions is $m = log_2 n$, hence it is $cal(O)(n log_2 n)$.
+3. Recursion. It can be used to calculate $H(k)$ and $G(k)$, moreover, when $n = 2^m$ recursion can be applied untill the end. Total number of recursions is $m = log_2 n$, hence it is $cal(O)(n log_2 n)$.
 
 *Matrix form.* 
 $
@@ -133,7 +130,7 @@ $
 D^n = mat(1, 0, 0, dots, 0; 0, w_n, 0, dots, 0; 0, 0, w_n^2, dots, 0; dots.v, dots.v, dots.v, dots.down, dots.v; 0, dots, dots, dots, w_n^(n-1)).
 $
 
-== Short time Fourier transform
+== Short-time Fourier transform
 
 *Idea.* Given a predefined window, drag it over the time series applying FFT locally each step. The values inside of the window would be weighted using a kernel function.
 

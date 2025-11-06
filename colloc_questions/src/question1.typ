@@ -70,7 +70,7 @@ Given data $(x_i, y_i)^m_(t=1)$ or $(t, y_t)^T_(t=1)$, the LOESS algorithm step-
 
 1. Choose a kernel function $cal(F)$ and set smoothing parameter $tau$.
 
-2. For all $x_i$:
+2. For each $x$ in dataset:
 
 #h(1.25em) 2.1. Calculate $w_i = cal(F)(x_i, x, tau)$
 
@@ -178,10 +178,9 @@ For example, if $R = [ 0.1, -0.2, 3.0, -0.1, 10.0 ]$:
 
 3. $C = 4.685 => C dot S = 2.083$
 
-4. $r_3 = 3.0: |u_3| = |3.0 / 2.083| approx 1.44 > 1 => u_3 = 0$ 
+4. $r_3 = 3.0: |u_3| = |3.0 / 2.083| approx 1.44 > 1 => w_3 = 0$ 
 
-5. $r_5 = 10.0: |u_5| = 4.801 > 1 => u_5 = 0$
+5. $r_5 = 10.0: |u_5| = 4.801 > 1 => w_5 = 0$
 
-6. $r_1 = 0.1: |u_1| approx 0.04821 => w_1 dot (1 - 0.048^2)^2 approx 0.995$
-
+6. $r_1 = 0.1: |u_1| approx 0.04821 => w_1 = (1 - 0.048^2)^2 approx 0.995$
 

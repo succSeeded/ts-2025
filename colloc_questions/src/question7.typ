@@ -22,9 +22,9 @@ $
 $
 PACF is calculated by fitting a regression
 $
-y_t = phi_k_1 y_(t-1) + phi_k_2 y_(t-2) + ... + phi_k_k y_(t-k) + epsilon_t
+y_t = phi_1 y_(t-1) + phi_2 y_(t-2) + ... + phi_k y_(t-k) + epsilon_t
 $
-and then $phi_k_k = "PACF"(k)$. Here the terms $phi_k_1, dots, phi_k_(k-1)$ are responsible for removal of linear effect of intermediate lags. 
+and then $phi_k = "PACF"(k)$. Here the terms $phi_1, dots, phi_(k-1)$ are responsible for removal of linear effect of intermediate lags. 
 
 == AR model description
 
@@ -118,17 +118,20 @@ here $p$ is defined as the first zero of PACF and $q$ as the first zero of ACF.
 
 == ARIMA model desciption
 
-ARIMA is an ARMA model fit to $Delta^d y_t$:
-$ 
+Denote
+$
 Delta y_t =& y_t - y_(t-1) = (1 - L) y_t, space L y_t = y_(t-1) \
 Delta^2 y_t =& Delta (y_t - y_(t-1)) = y_t - 2 y_(t-1) + y_(t-2) = (1 - L)^2 y_t \
 Delta^d y_t =& (1 - L)^d y_t.
 $
-Thus:
+Taking an ARMA model:
 $ 
 y_t =& c + phi_1 y_(t-1) + ... + phi_p y_(t-p) + epsilon_t + theta_1 epsilon_(t-1) + ... + theta_q epsilon_(t-q) \ 
-(1 -& phi_1 L - ... - phi_p L^p)y_t = epsilon_t + theta_1 epsilon_(t-1) + ... + theta_q epsilon_(t-q) \ 
-(1 -& sum_(i=1)^p phi_i L^i) Delta^d y_t = c + epsilon_t + sum_(i=1)^q theta_i epsilon_(t-i) \
-(1 -& sum_(i=1)^p phi_i L^i) (1 - L)^d y_t = c + epsilon_t + sum_(i=1)^q theta_i epsilon_(t-i)
+(1 -& phi_1 L - ... - phi_p L^p)y_t = c + (1 + theta_1 L + ... + theta_q L^q)epsilon_t
 $
-
+and applying it to $Delta^d y_t$ results in the following model:  
+$
+(1 -& sum_(i=1)^p phi_i L^i) Delta^d y_t = c + (1 + sum_(i=1)^q theta_i L^i) epsilon_t \
+(1 -& sum_(i=1)^p phi_i L^i) (1 - L)^d y_t = c + (1 + sum_(i=1)^q theta_i L^i) epsilon_t. 
+$
+Which is called $"ARIMA"(p, q, d)$.
