@@ -21,7 +21,7 @@ $
 it follows that:
 $
 x =& (sum_(t=0)^T beta^(T-t) y_t) / (sum_(t=0)^T beta^(T - t)) = (sum_(t=0)^T beta^(T-t) y_t) / (1 / (1 - beta)) = \
-=& (1 - beta) sum_(t=0)^T beta^(T - t) y_t = (1 - beta) y_t + (1 - beta) beta sum_(t=0)^(T-1) beta^(T-1-t) y_t =\
+=& (1 - beta) sum_(t=0)^T beta^(T - t) y_t = (1 - beta) y_T + (1 - beta) beta sum_(t=0)^(T-1) beta^(T-1-t) y_t =\
 =& (1 - beta) y_T + beta hat(y)_(T | T-1).
 $
 Designating $alpha = 1 - beta$ we get the initial expression.

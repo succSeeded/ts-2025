@@ -14,41 +14,38 @@ $ y_t = T_t S_t R_t, " or " y_t = (T_t + S_t)R_t. $
 
 Moving average (MA) is given by the following expression:
 
-$ "MA"(y_t; m) = 1 / m sum_(j=-k)^k y_t, $
+$ "MA"(y_t; m) = 1 / m sum_(j=-k)^k y_(t+j), $
 
 where $m = 2k+1$ is called _window size_ and has to be odd. Backward formula:
-
-$ "MA"(y_t; m) = 1 / m sum_(j=-m)^0 y_t, $
-
+$
+"MA"(y_t; m) = 1 / m sum_(j=-m)^0 y_(t+j),
+$
 Forward formula:
-
-$ "MA"(y_t; m) = 1 / m sum_(j=0)^m y_t. $
-
+$
+"MA"(y_t; m) = 1 / m sum_(j=0)^m y_(t+j).
+$
 For $m = 4$:
-
-$ "MA"(y_t; 4) = 1 / 4 (y_(t-1), y_t, y_(t+1), y_(t+2)). $
-
+$
+"MA"(y_t; 4) = 1 / 4 (y_(t-1), y_t, y_(t+1), y_(t+2)).
+$
 Moving average over moving average:
-
 $
   "MA"("MA"(y_t, 4); 2) & = 1 / 2 ["MA"(y_(t-1);4), "MA"(y_t; 4)] = \
                         & = 1 / 2[ 1 / 4 (y_(t-2), y_(t-1), y_t, y_(t+1)) + 1 / 4(y_(t-1), y_t, y_(t+1), y_(t+2)) ] = \
                         & = 1 / 8 y_(t-2) + 1 / 4 y_(t-1) + 1 / 4 y_t + 1 / 4 y_(t+1) + 1 / 8 y_(t+2).
 $
-
 MAs are used to: 1) smooth out the data; 2) extranct the trend.
 
 Weighted moving average (WMA):
-
-$ "WMA"(y_t; m) = sum_(j=-k)^k y_(t+j) dot w_j, space w_j >= 0, space sum w_j = 1. $
-
+$
+"WMA"(y_t; m) = sum_(j=-k)^k y_(t+j) dot w_j, space w_j >= 0, space sum w_j = 1.
+$
 The classical TSD algorithm is given as follows:
 
 1. Compute trend component using $2 times m$-MA if $m$ is even and $m$-MA if it is odd. 
 $
 hat(T)_t = cases("MA"(y_t; m)", if "m" is odd,", "MA"("MA"(y_t; m); 2)", if "m" is even.")
 $
-
 2. Detrend the time series (TS): 
 $
 y_t - hat(T)_t = S_t + R_t.
@@ -125,9 +122,9 @@ $
 
 #h(1.25cm)2.3. Update seasonal component $S = C$.
 
-#h(1.25cm)2.4. Deaseasonalize the data: $Y_("desd") = Y - S$
+#h(1.25cm)2.4. Deaseasonalize the data: $tilde(Y) = Y - S$
 
-#h(1.25cm)2.5. Update the trend: apply LOESS for $Y_("desd")$ with $tau = n_l$ and "robust" weights $w$ (obtain $T$).
+#h(1.25cm)2.5. Update the trend: apply LOESS for $tilde(Y)$ with $tau = n_l$ and "robust" weights $w$ (obtain $T$).
 
 3. Compute the residuals $R = Y - T - S$.
 
@@ -183,7 +180,7 @@ For example, if $R = [ 0.1, -0.2, 3.0, -0.1, 10.0 ]$:
 
 4. $r_3 = 3.0: |u_3| = |3.0 / 2.083| approx 1.44 > 1 => u_3 = 0$ 
 
-5. $r_3 = 10.0: |u_5| = 4.801 > 1 => u_5 = 0$
+5. $r_5 = 10.0: |u_5| = 4.801 > 1 => u_5 = 0$
 
 6. $r_1 = 0.1: |u_1| approx 0.04821 => w_1 dot (1 - 0.048^2)^2 approx 0.995$
 
