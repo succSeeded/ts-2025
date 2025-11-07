@@ -4,17 +4,17 @@
 
 === Parameters
 
-- $epsilon$
+- tolerance $epsilon$
 
-- $"minPts"$ -- minimum number of points in $epsilon$-neighbourhood to determine the core point.
+- $"minPts"$ --- minimum number of points in $epsilon$-neighbourhood to determine the core point.
 
 === Point types
 
-- core point -- a point that hase at least $"minPts"$ points inside of its $epsilon$-neighbourhood including itself.
+- _core point_ --- a point that has at least $"minPts"$ points inside of its $epsilon$-neighbourhood including itself.
 
-- border point -- a point with less than $"minPts"$ points in its $epsilon$-neighbourhood but is reachable from a core point
+- _border point_ --- a point with less than $"minPts"$ points in its $epsilon$-neighbourhood but is reachable from a core point
 
-- noise point -- every other point.
+- _noise point_ --- every other point.
 
 === Reachability
 
@@ -49,7 +49,7 @@ $q$ is _reachable_ from $p$ if there exists a chain of points that includes $p$ 
 
 #h(2.5cm) - recuresively grow the cluster by adding points reachable from the core points.
 
-3. CLuster expansion.
+3. Cluster expansion.
 
 - For each point $q$ in the current cluster
 
@@ -89,13 +89,13 @@ where:
 
 $V_K(x)$ is the volume of $K$-dimensional hypersphere with center at x and containting $K$ points,
 
-$d_K(x)$ -- radius of the spehere (a.k.a. dist. to the $K$th nearest neighbour),
+$d_K(x)$ --- radius of the spehere (a.k.a. dist. to the $K$th nearest neighbour),
 
-$n$ -- the total \# of points.
+$n$ --- the total \# of points.
 
 === Connectivity graph $G(Z_n, U_n)$
 
-Here $Z_n$ is the set of all vertices and $U_n$ -- the set of edges. So $X_i$ is connected to $X_j$ if 
+Here $Z_n$ is the set of all vertices and $U_n$ --- the set of edges. So $X_i$ is connected to $X_j$ if 
 
 $ d(X_i, X_j) <= d_K (x_i), space i != j. $
 
@@ -121,7 +121,7 @@ $ max{\|p(X_i) - p(X_j)\| \| forall X_i, space X_j in C_l} >= h. $
 
 - Set counter $i = 1$
 
-- Denote cluster label for $i$-th point as $omega(X_i)$
+- Denote cluster label for $i$-th point as $w (X_i)$
 
 3. Process points in sorted order.
 
@@ -133,7 +133,7 @@ A. Isolated vertex.
 
 B. Connected to only one cluster $C_l$.
 
-- If cluster is complete $omega(X_i)=0$ or in layman's terms we label $X_i$ as noise.
+- If cluster is complete $w (X_i)=0$ or in layman's terms we label $X_i$ as noise.
 
 - If cluster is not complete we label this point with class label.
 
@@ -141,7 +141,7 @@ C. Connected to multiple clusters.
 
 - If all clusters as complete we lable the point as noise.
 
-- Determine the number of significant cluters (in terms of height significance) $Z(h)$. If $Z(h) > 1$ then label all significant clusters as complete and delete insignificant clusters (by assigning them to noise) and assign the point to noise too: $omega(X_i) = 0$. If there is only signle significant cluster combine all clusters into one $C_l_1$, $omega(x) = l_1$
+- Determine the number of significant cluters (in terms of height significance) $Z(h)$. If $Z(h) > 1$ then label all significant clusters as complete and delete insignificant clusters (by assigning them to noise) and assign the point to noise too: $w (X_i) = 0$. If there is only signle significant cluster combine all clusters into one $C_l_1$, $omega(x) = l_1$
 
 4. Update the counter $i = i+1$, if $i <= n$ goto step 3.
 
@@ -188,17 +188,17 @@ $
 
 where:
 
-$"SSB"$ -- intercluster dispersion,
+$"SSB"$ --- intercluster dispersion,
 
-$"SSW"$ -- intracluster dispersion,
+$"SSW"$ --- intracluster dispersion,
 
-$K$ -- the number of clusters,
+$K$ --- the number of clusters,
 
-$N$ -- the number of points,
+$N$ --- the number of points,
 
-$\|C_k\|$ -- the number of elements in the cluster $C_k$,
+$\|C_k\|$ --- the number of elements in the cluster $C_k$,
 
-$C$ -- center of all data.
+$C$ --- center of all data.
 
 3. Davies-Bondeu index $cal(O)(n)$
 
