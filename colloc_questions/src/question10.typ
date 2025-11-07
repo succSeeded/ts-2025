@@ -83,45 +83,45 @@ Wishart algorithm modified by Lapko nad Chentsov.
 
 === Density estimation
 
-$ p(x) = K / (V_K(x) dot n), $
+Density function is given by the following expression:
+
+$ p(x) = K / (V_K (x) dot n), $
 
 where: 
 
-$V_K(x)$ is the volume of $K$-dimensional hypersphere with center at x and containting $K$ points,
+- $V_K (x)$ is the volume of $K$-dimensional hypersphere with center at $x$ that contains $K$ points,
 
-$d_K(x)$ --- radius of the spehere (a.k.a. dist. to the $K$th nearest neighbour),
+- $d_K (x)$ --- radius of the sphere (a.k.a. dist. to the $K$-th nearest neighbour),
 
-$n$ --- the total \# of points.
+- $n$ --- the total \# of points.
 
-=== Connectivity graph $G(Z_n, U_n)$
+=== Connectivity graphs
 
-Here $Z_n$ is the set of all vertices and $U_n$ --- the set of edges. So $X_i$ is connected to $X_j$ if 
-
-$ d(X_i, X_j) <= d_K (x_i), space i != j. $
-
-=== Connectivity subgraph $G(Z_i, U_i)$
-
-Here, $Z_i = {X_1, X_2, ..., X_i}$ and $U_i$ is the set of edges connecting points in $Z_i$.
+- _Connectivity graph_ $G(Z_n, U_n)$ is a graph where $Z_n$ is the set of all vertices and $U_n$ --- the set of edges. So $X_i$ is connected to $X_j$ if 
+$
+d(X_i, X_j) <= d_K (x_i), space i != j.
+$
+- Connectivity subgraph $G(Z_i, U_i)$ is a graph where $Z_i = {X_1, X_2, ..., X_i}$ and $U_i$ is the set of edges connecting points in $Z_i$.
 
 === Height significance of a cluster
 
-Some cluster $C_l$ is height significant w.r.t. some height $h > 0$ if 
-
-$ max{\|p(X_i) - p(X_j)\| \| forall X_i, space X_j in C_l} >= h. $
-
+A cluster $C_l$ is height significant w.r.t. height $h > 0$ if 
+$
+max{|p(X_i) - p(X_j)| space forall X_i, space X_j in C_l} >= h.
+$
 === Algorithm
 
 1. Prepare the data.
 
-- Calculate $d_K (X) space forall X in "data"$
+- Calculate $d_K (x) space forall x in "data"$
 
-- Sort the data based n $d_K (X)$ in ascending order
+- Sort the data based n $d_K (x)$ in ascending order
 
 2. Initialization.
 
 - Set counter $i = 1$
 
-- Denote cluster label for $i$-th point as $w (X_i)$
+- Denote cluster label for $i$-th point as $w(x_i)$
 
 3. Process points in sorted order.
 
@@ -133,7 +133,7 @@ A. Isolated vertex.
 
 B. Connected to only one cluster $C_l$.
 
-- If cluster is complete $w (X_i)=0$ or in layman's terms we label $X_i$ as noise.
+- If cluster is complete $w(x_i)=0$ or in layman's terms we label $x_i$ as noise.
 
 - If cluster is not complete we label this point with class label.
 
@@ -141,31 +141,31 @@ C. Connected to multiple clusters.
 
 - If all clusters as complete we lable the point as noise.
 
-- Determine the number of significant cluters (in terms of height significance) $Z(h)$. If $Z(h) > 1$ then label all significant clusters as complete and delete insignificant clusters (by assigning them to noise) and assign the point to noise too: $w (X_i) = 0$. If there is only signle significant cluster combine all clusters into one $C_l_1$, $omega(x) = l_1$
+- Determine the number of significant cluters (in terms of height significance) $Z(h)$. If $Z(h) > 1$ then label all significant clusters as complete and delete insignificant clusters (by assigning them to noise) and assign the point to noise too: $w(x_i) = 0$. If there is only signle significant cluster combine all clusters into one $C_l_1$, $w(x) = l_1$.
 
 4. Update the counter $i = i+1$, if $i <= n$ goto step 3.
 
 === Advantages
 
-- Algorithm itself determines the \# of clusters
+- Algorithm itself determines the \# of clusters.
 
-- Tends to label more points as noise the other algorithms do\*
+- Tends to label more points as noise the other algorithms do\*.
 
-- Can find clusters of arbitrary form
+- Can find clusters of arbitrary form.
 
-- Not sensitive to noise
+- Not sensitive to noise.
 
 === Disadvantages
 
-- Sensitive to choice of hyperparameters
+- Sensitive to choice of hyperparameters.
 
-- Optimal hyperparameter values are hard to determine
+- Optimal hyperparameter values are hard to determine.
 
-- Slow (but we dgaf)
+- Slow.
 
 === Hyperparameter selection
 
-Obviously weuse grid search, but we need to compare clusterization results to each other. Let us discuss some metrics we can use.
+Grid search is usually used, but clusterization results have to be able to be compared with each other. This can be achieved using metrics. 
 
 1. Silhouette score $cal(O)(n^2)$
 
@@ -179,47 +179,41 @@ S =& "mean"(S(i)).
 $
 
 2. Halinski-Harabaz index $cal(O)(n)$
-
 $ 
-"SSB" =& sum \|C_k\| dot \|\| C_k - C \|\|^2, \
-"SSW" =& sum \|\| X - C_k \|\|^2, \
+"SSB" =& sum |C_k| dot ||C_k - C||^2, \
+"SSW" =& sum ||X - C_k||^2, \
 "CH" =& ( ("SSB") / (K - 1) ) / ( "SSW" / (N - K) ),
 $
-
 where:
 
-$"SSB"$ --- intercluster dispersion,
+- $"SSB"$ --- intercluster dispersion,
 
-$"SSW"$ --- intracluster dispersion,
+- $"SSW"$ --- intracluster dispersion,
 
-$K$ --- the number of clusters,
+- $K$ --- the number of clusters,
 
-$N$ --- the number of points,
+- $N$ --- the number of points,
 
-$\|C_k\|$ --- the number of elements in the cluster $C_k$,
+- $|C_k|$ --- the number of elements in the cluster $C_k$,
 
-$C$ --- center of all data.
+- $C$ --- center of all data.
 
 3. Davies-Bondeu index $cal(O)(n)$
-
 $
-s_i =& 1 / (\|C_i\|) sum \|\| X - C_i \|\| \
-R_(\i\j) =& (s_i + s_j) / (\|\| C_i - C_j \|\|) \
-D_i =& max_(j, space i!=j) R_(\i\j) \
+s_i =& 1 / (|C_i|) sum ||X - C_i|| \
+R_(i j) =& (s_i + s_j) / (||C_i - C_j||) \
+D_i =& max_(j, space i!=j) R_(i j) \
 "DB" =& 1 / K sum D_i, space "DB" in [0, infinity)
 $
-
-The lower $"DB"$ is the better.
+The lower $"DB"$ the better.
 
 4. Vaname ratio criterion.
 
 // TSS is general variance
-
 $
-"TSS" = sum \|\| X_i - C \|\|^2 \
-"BSS" = sum \| C_k \| \|\| C_k - C \|\|^2 \
+"TSS" = sum ||X_i - C||^2 \
+"BSS" = sum |C_k| dot ||C_k - C||^2 \
 "VR" = "TSS" / "BSS" in [0,1]
 $
-
-The closer to 0, worse the clustering is.
+The closer to 0, the worse clustering is.
 
