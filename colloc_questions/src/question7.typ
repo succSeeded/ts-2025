@@ -4,7 +4,7 @@
 
 *ACF* _(AutoCorrelation Function)_ shows correlation of $y_t$ with lagged component of time series $y_(t-k)$ for different $k$'s. It is given by the following expression:
 $
-"ACF"(k) = rho(y_t, space y_(t-k)) = ("cov"(y_t, space y_(t-k))) / (sigma(y_t) sigma(y_(t-k))) approx (sum^T_(tau=k)(y_k-overline(y))(y_(t-k)-overline(y))) / (sum_(t=1)^T (y_t - overline(y))),
+"ACF"(k) = rho(y_t, space y_(t-k)) = ("cov"(y_t, space y_(t-k))) / sqrt(sigma(y_t) sigma(y_(t-k))) approx (sum^T_(tau=k)(y_k-overline(y))(y_(t-k)-overline(y))) / (sum_(t=1)^T (y_t - overline(y))),
 $
 where $overline(y) = 1 / T sum_(t=1)^T y_t$ and $|"ACF"(k)| <= 1$.
 

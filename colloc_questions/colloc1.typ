@@ -27,6 +27,6 @@
 
 // Shitty code, but I could not be bothered to do something better
 #for i in range(1, 12) {
-  include "src\question"+str(i)+".typ"
+  include "src/question"+str(i)+".typ"
 }
 
