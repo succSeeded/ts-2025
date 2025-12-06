@@ -1,3 +1,7 @@
+# datasets
+data/
+
+# training logs
 logs/
 lightning_logs/
 
