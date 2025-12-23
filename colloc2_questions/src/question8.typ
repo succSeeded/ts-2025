@@ -84,3 +84,8 @@ $Psi: S -> S$ can be used to predict future values of the time series. Given $z_
 $
 z_(i+1,m) = y_(i+m+1-1) = F(z_i) = F((y_i, dots, y_(i+m-1))).
 $
+Choosing parameters:
+
+- $m$ is the smallest embedding size that produces FNN to NN smaller than a preset value (e.g. $<1%$);
+
+- $tau$ should be eather the first zero fo ACF or the first minimum of mutual information.
